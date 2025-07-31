@@ -13,6 +13,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("topicos")
 public class TopicoController {
@@ -28,6 +30,10 @@ public class TopicoController {
     @GetMapping
     public  ResponseEntity<Page<Topico>> listar( @PageableDefault(size = 10,sort={"fechaCreacion"}, direction = Sort.Direction.DESC)Pageable pageable) {
         return ResponseEntity.ok(serviceTopico.listadoTopicos(pageable));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Topico>> buscar(@PathVariable Long id) {
+        return ResponseEntity.ok(serviceTopico.detalleTopico(id));
     }
 
 }

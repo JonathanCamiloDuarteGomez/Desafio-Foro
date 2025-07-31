@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GestionTopicoService {
@@ -24,5 +25,11 @@ public class GestionTopicoService {
     }
     public Page<Topico> listadoTopicos( Pageable pageable) {//pageable de Spring data
         return topicoRepository.findAll(pageable);
+    }
+    public Optional<Topico> detalleTopico(Long id) {
+        if (!topicoRepository.existsById(id)) {
+            throw new IllegalArgumentException("Tópico no encontrado");
+        }
+        return topicoRepository.findById(id);
     }
 }

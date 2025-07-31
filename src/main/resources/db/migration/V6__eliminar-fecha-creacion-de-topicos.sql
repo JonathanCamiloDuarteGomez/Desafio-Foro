@@ -1,1 +1,0 @@
-ALTER TABLE topicos DROP COLUMN fecha_creacion;

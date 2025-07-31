@@ -1,0 +1,1 @@
+ALTER TABLE topicos MODIFY respuesta_id BIGINT NULL;

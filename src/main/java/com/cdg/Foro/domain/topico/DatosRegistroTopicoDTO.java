@@ -1,8 +1,12 @@
 package com.cdg.Foro.domain.topico;
 
+import com.cdg.Foro.domain.curso.Curso;
+import com.cdg.Foro.domain.usuario.Usuario;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -11,9 +15,9 @@ public record DatosRegistroTopicoDTO(
         String titulo,
         @NotBlank(message = "El mensage no puede estar vacío")
         String mensage,
-        @NotBlank(message = "La fecha de creación no puede estar vacía")
-        LocalDateTime fechaCreacion,
-        @NotBlank(message = "El status no puede estar vacío")
-        StatusTopico status
+        @NotNull(message = "El autor no puede estar vacío")
+        Long autorId,
+        @NotNull(message = "El curso no puede estar vacío")
+        Long cursoId
 ) {
 }

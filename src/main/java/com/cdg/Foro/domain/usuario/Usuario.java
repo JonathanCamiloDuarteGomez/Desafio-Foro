@@ -24,6 +24,7 @@ public class Usuario {
     private String correoElectronico;
 
     private String contrasena;
+    private Long perfilId;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

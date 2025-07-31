@@ -1,13 +1,12 @@
 package com.cdg.Foro.domain.topico;
 
-import com.cdg.Foro.domain.curso.Curso;
-import com.cdg.Foro.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+
 
 @Table(name = "topicos")
 @Entity(name = "topico")
@@ -20,17 +19,15 @@ public class Topico {
     private Long id;
     private String titulo;
     private String mensage;
+    @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
     @Enumerated(EnumType.STRING)
     private StatusTopico status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "autor_id")
-    private Usuario autor;
+    private Long autorId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "curso_id")
-    private Curso curso;
+    private Long cursoId;
+    private Long respuesta_id;
 
 
     public Topico(DatosRegistroTopicoDTO datosRegistroTopico) {
@@ -38,7 +35,10 @@ public class Topico {
         this.titulo = datosRegistroTopico.titulo();
         this.mensage = datosRegistroTopico.mensage();
         this.fechaCreacion = LocalDateTime.now();
-        this.status = datosRegistroTopico.status();
+        this.status = StatusTopico.EN_CURSO;
+        this.autorId = datosRegistroTopico.autorId();
+        this.cursoId = datosRegistroTopico.cursoId();
+        this.respuesta_id = null;
     }
 
 

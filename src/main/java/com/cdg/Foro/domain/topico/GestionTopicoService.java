@@ -3,6 +3,8 @@ package com.cdg.Foro.domain.topico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GestionTopicoService {
     @Autowired
@@ -17,5 +19,8 @@ public class GestionTopicoService {
             topicoRepository.save(new Topico(datosRegistroTopico));
         }
 
+    }
+    public List<Topico> listadoTopicos() {
+        return topicoRepository.findAll();
     }
 }

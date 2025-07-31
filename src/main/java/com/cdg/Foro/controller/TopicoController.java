@@ -7,10 +7,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("topicos")
@@ -23,6 +20,10 @@ public class TopicoController {
     public ResponseEntity registrar(@RequestBody @Valid DatosRegistroTopicoDTO datosRegistroTopico) {
         serviceTopico.registrarTopico(datosRegistroTopico);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping
+    public  ResponseEntity listar() {
+        return ResponseEntity.ok(serviceTopico.listadoTopicos());
     }
 
 }

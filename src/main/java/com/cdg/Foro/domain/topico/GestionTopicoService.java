@@ -39,4 +39,15 @@ public class GestionTopicoService {
         }
         return topicoRepository.getReferenceById(id);
     }
+
+    public Topico actualizarTopico(Long id,DatosActualizacionTopicoDTO actualizar) {
+        if (!topicoRepository.existsById(id)) {
+            throw new IllegalArgumentException("Tópico no encontrado, no se puede actualizar");
+        }else{
+            Topico topico = topicoRepository.getReferenceById(id);
+            topico.actualizarTopico(actualizar);
+            return topico;
+        }
+
+    }
 }

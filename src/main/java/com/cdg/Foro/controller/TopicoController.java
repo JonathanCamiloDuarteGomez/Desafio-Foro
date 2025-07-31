@@ -39,10 +39,8 @@ public class TopicoController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity actualizar(@PathVariable Long id, @RequestBody @Valid DatosActualizacionTopicoDTO actualizar) {
-        Topico topico = serviceTopico.getReferenceById(id);
-        topico.actualizarTopico(actualizar);
-        return ResponseEntity.ok((new DatosActualizacionTopicoDTO(
-                topico.getMensage(), topico.getStatus(), topico.getAutorId(), topico.getCursoId())));
+        Topico topico = serviceTopico.actualizarTopico(id,actualizar);
+        return ResponseEntity.ok((new DatosActualizacionTopicoDTO(topico)));
     }
 
 }

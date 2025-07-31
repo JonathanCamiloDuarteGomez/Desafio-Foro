@@ -9,4 +9,7 @@ public record DatosActualizacionTopicoDTO(
         @NotNull(message = "El autor no puede estar vacío") Long autorId,
         @NotNull(message = "El curso no puede estar vacío") Long cursoId
 ) {
+    public DatosActualizacionTopicoDTO(Topico topico) {
+        this(topico.getMensage(), topico.getStatus(), topico.getAutorId(), topico.getCursoId());
+    }
 }

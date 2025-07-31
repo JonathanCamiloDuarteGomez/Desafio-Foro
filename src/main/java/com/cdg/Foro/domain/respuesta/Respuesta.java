@@ -19,14 +19,22 @@ public class Respuesta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "mensage")
     private String mensaje;
 
     private Long topicoId;
 
     private Long autorId;
+    private LocalDateTime fecha_creacion;
+    private Boolean solucion ;
 
-    private LocalDateTime fechaCreacion = LocalDateTime.now();
-    private Boolean solucion = false;
+    public Respuesta(DatosRegistroRespuestaDTO datos) {
+        this.id = null;
+        this.mensaje = datos.mensaje();
+        this.topicoId = datos.topicoId();
+        this.autorId = datos.autorId();
+        this.fecha_creacion = LocalDateTime.now();
+        this.solucion = true;
+    }
 
 }

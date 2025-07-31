@@ -1,8 +1,6 @@
 // src/main/java/com/cdg/Foro/domain/respuesta/DatosRegistroRespuestaDTO.java
 package com.cdg.Foro.domain.respuesta;
 
-import com.cdg.Foro.domain.topico.Topico;
-import com.cdg.Foro.domain.usuario.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

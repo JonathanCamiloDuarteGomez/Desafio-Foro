@@ -40,6 +40,22 @@ public class Topico {
         this.cursoId = datosRegistroTopico.cursoId();
         this.respuesta_id = null;
     }
+    public void actualizarTopico(DatosActualizacionTopicoDTO actualizar) {
+
+        if (actualizar.mensage() != null) {
+            this.mensage = actualizar.mensage();
+        }
+        if (actualizar.status() != null) {
+            this.status = actualizar.status();
+        }
+        if (actualizar.autorId() != null) {
+            this.autorId = actualizar.autorId();
+        }
+        if (actualizar.cursoId() != null) {
+            this.cursoId = actualizar.cursoId();
+        }
+
+    }
 
 
 

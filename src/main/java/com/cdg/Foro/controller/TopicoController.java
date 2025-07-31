@@ -1,5 +1,6 @@
 package com.cdg.Foro.controller;
 
+import com.cdg.Foro.domain.topico.DatosActualizacionTopicoDTO;
 import com.cdg.Foro.domain.topico.DatosRegistroTopicoDTO;
 import com.cdg.Foro.domain.topico.GestionTopicoService;
 import com.cdg.Foro.domain.topico.Topico;
@@ -34,6 +35,14 @@ public class TopicoController {
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Topico>> buscar(@PathVariable Long id) {
         return ResponseEntity.ok(serviceTopico.detalleTopico(id));
+    }
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity actualizar(@PathVariable Long id, @RequestBody @Valid DatosActualizacionTopicoDTO actualizar) {
+        Topico topico = serviceTopico.getReferenceById(id);
+        topico.actualizarTopico(actualizar);
+        return ResponseEntity.ok((new DatosActualizacionTopicoDTO(
+                topico.getMensage(), topico.getStatus(), topico.getAutorId(), topico.getCursoId())));
     }
 
 }

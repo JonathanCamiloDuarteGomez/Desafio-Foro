@@ -32,4 +32,11 @@ public class GestionTopicoService {
         }
         return topicoRepository.findById(id);
     }
+
+    public Topico getReferenceById(Long id) {
+        if (!topicoRepository.existsById(id)) {
+            throw new IllegalArgumentException("Tópico no encontrado");
+        }
+        return topicoRepository.getReferenceById(id);
+    }
 }

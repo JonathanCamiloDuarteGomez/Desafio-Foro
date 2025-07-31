@@ -1,6 +1,8 @@
 package com.cdg.Foro.domain.topico;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class GestionTopicoService {
         }
 
     }
-    public List<Topico> listadoTopicos() {
-        return topicoRepository.findAll();
+    public Page<Topico> listadoTopicos( Pageable pageable) {//pageable de Spring data
+        return topicoRepository.findAll(pageable);
     }
 }

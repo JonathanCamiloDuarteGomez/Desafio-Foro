@@ -6,6 +6,10 @@ import com.cdg.Foro.domain.topico.Topico;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +26,8 @@ public class TopicoController {
         return ResponseEntity.ok().build();
     }
     @GetMapping
-    public  ResponseEntity listar() {
-        return ResponseEntity.ok(serviceTopico.listadoTopicos());
+    public  ResponseEntity<Page<Topico>> listar( @PageableDefault(size = 10,sort={"fechaCreacion"}, direction = Sort.Direction.DESC)Pageable pageable) {
+        return ResponseEntity.ok(serviceTopico.listadoTopicos(pageable));
     }
 
 }

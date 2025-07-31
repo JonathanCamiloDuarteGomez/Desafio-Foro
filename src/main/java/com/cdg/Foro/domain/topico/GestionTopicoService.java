@@ -50,4 +50,12 @@ public class GestionTopicoService {
         }
 
     }
+
+    public void eliminarTopico(Long id) {
+        if (!topicoRepository.existsById(id)) {
+            throw new IllegalArgumentException("Tópico no encontrado, no se puede eliminar");
+        }else{
+            topicoRepository.deleteById(id);
+        }
+    }
 }

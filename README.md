@@ -2,6 +2,8 @@
 
 [![Java](https://img.shields.io/badge/Java-17%2B-orange)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1.0-green)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring%20Security-6.1.0-blue)](https://spring.io/projects/spring-security)
+[![JWT](https://img.shields.io/badge/JWT-4.5.0-yellow)](https://jwt.io/)
 
 
 ## 📌 Descripción del Proyecto
@@ -32,9 +34,11 @@
 ### Backend
 - Java 17
 - Spring Boot 3.1.0
+- Spring Security 6.1.0
 - Spring Data JPA
 - Spring Validation
 - Lombok
+- JWT (JSON Web Tokens)
 
 ### Base de Datos
 - MySQL 8.0+
@@ -44,6 +48,42 @@
 - Maven
 - Git
 - IntelliJ IDEA (recomendado)
+
+## 🔐 Autenticación
+
+La API utiliza autenticación basada en JWT (JSON Web Tokens).
+
+### Flujo de Autenticación
+
+1. **Iniciar sesión** para obtener un token JWT
+2. Incluir el token en el header `Authorization` de las peticiones posteriores
+3. El token tiene una validez de 2 horas
+
+### Endpoints de Autenticación
+
+#### Iniciar Sesión
+```http
+POST /login
+Content-Type: application/json
+
+{
+    "nombre": "usuario",
+    "contrasena": "contraseña"
+}
+```
+
+**Respuesta exitosa (200 OK):**
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+#### Uso del Token
+Incluir el token en el header de las peticiones:
+```
+Authorization: Bearer <token>
+```
 
 ## 🚀 Empezando
 
@@ -64,6 +104,7 @@
 2. Configurar la base de datos:
    - Crear una base de datos MySQL llamada `foro_db`
    - Configurar las credenciales en `src/main/resources/application.properties`
+   - Ejecutar el script SQL para crear el usuario inicial (ver sección de configuración)
 
 3. Ejecutar la aplicación:
    ```bash
@@ -71,6 +112,38 @@
    ```
 
 La aplicación estará disponible en `http://localhost:8080`
+
+## ⚙️ Configuración
+
+### Base de Datos
+
+1. Crear la base de datos:
+   ```sql
+   CREATE DATABASE foro_db;
+   ```
+
+2. Crear un usuario administrador (opcional):
+   ```sql
+   INSERT INTO usuario (nombre, email, contrasena) 
+   VALUES ('admin', 'admin@foro.com', '$2a$12$TuHashGeneradoAqui123456789012345678901234567890123456789012345678');
+   ```
+   
+   Reemplaza el hash con uno generado con BCrypt para tu contraseña deseada.
+
+### Variables de Entorno
+
+Asegúrate de configurar estas propiedades en `application.properties`:
+
+```properties
+# Configuración de JWT
+api.security.token.secret=frase-secreta-para-generar-token
+api.security.token.expiration=7200 # 2 horas en segundos
+
+# Configuración de la base de datos
+spring.datasource.url=jdbc:mysql://localhost:3306/foro_db
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_contraseña
+```
 
 ## 📚 Documentación de la API
 

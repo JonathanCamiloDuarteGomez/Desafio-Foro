@@ -31,6 +31,7 @@ public class SecurityConfigurations {
                                     HttpMethod.POST,
                                     "/login")
                             .permitAll();
+                    req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     req.anyRequest().authenticated();//el resto de las peticiones necesitan autenticacion
                 })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

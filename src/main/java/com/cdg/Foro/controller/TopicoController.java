@@ -4,6 +4,7 @@ import com.cdg.Foro.domain.topico.DatosActualizacionTopicoDTO;
 import com.cdg.Foro.domain.topico.DatosRegistroTopicoDTO;
 import com.cdg.Foro.domain.topico.GestionTopicoService;
 import com.cdg.Foro.domain.topico.Topico;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("topicos")
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
     @Autowired
     private GestionTopicoService serviceTopico;

@@ -3,6 +3,7 @@ package com.cdg.Foro.controller;
 
 import com.cdg.Foro.domain.respuesta.DatosRegistroRespuestaDTO;
 import com.cdg.Foro.domain.respuesta.GestionRespuestaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("respuestas")
+@SecurityRequirement(name = "bearer-key")
 public class RespuestaController {
 
     @Autowired
